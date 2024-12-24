@@ -9,11 +9,10 @@ def create_attack_repo(attack):
         merge(r: Region{name:$region_name})
         merge(c: Country{name:$country_name})
         merge(g: Group{name:$group_name})
-        create (a:Attack{type:$type,
-                target:$target })
-        merge(g) - [:ATTACKED]->(a) -[:WAS_IN]-> (c)
+        merge(g) - [:ATTACKED{type:$type,
+                target:$target}]-> (c)
         merge (c) -[:IS_IN]-> (r)
-        return c, g, a
+        return c, g,r
         """
         params = {
             "country_name": attack['country_name'],

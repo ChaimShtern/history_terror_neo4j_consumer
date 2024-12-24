@@ -14,5 +14,4 @@ def consume(mode='latest'):
     )
 
     for message in consumer:
-        print(message.value)
         split_report(message.value)
